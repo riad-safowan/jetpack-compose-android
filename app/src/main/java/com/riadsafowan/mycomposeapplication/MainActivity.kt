@@ -21,6 +21,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,6 +39,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+val fontFamily= FontFamily(
+        Font(R.font.dancing_script_medium, FontWeight.Medium),
+        Font(R.font.dancing_script_regular, FontWeight.Normal),
+        Font(R.font.dancing_script_semi_bold, FontWeight.SemiBold),
+        Font(R.font.dancing_script_bold, FontWeight.Bold),
+)
 
 @Composable
 @Preview(showBackground = true)
@@ -52,17 +61,36 @@ private fun MyView() {
             ImageCard(painter, "adf", "Hello from Android")
             ImageCard(painter, "adf", "another from Android")
         }
-        Row(
+        Spacer(
             modifier = Modifier
+                .border(width = 2.5.dp, color = Color.Black)
                 .fillMaxWidth()
-                .padding(0.dp, 10.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            ImageCard(painter, "adf", "Hello from Android")
-            ImageCard(painter, "adf", "another from Android")
+                .height(10.dp)
+                .background(Color.Red)
+        )
+        Row {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min)
+                    .background(Color(0xFF000000))
+            ) {
+                Column() {
+                    Text(text = "hello world",
+                        color = Color.White,
+                        fontSize = 30.sp,
+                        fontFamily = fontFamily
+                        )
+                    Text(text = "hello world",
+                    style = TextStyle(color = Color.Blue)
+                    )
+                }
+
+            }
         }
     }
+
+
 }
 
 @Composable
