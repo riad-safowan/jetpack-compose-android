@@ -20,6 +20,9 @@ fun Navigation() {
         composable(route = Screen.StateScreen.route) {
             StateScreen(navController = navController)
         }
+        composable(route = Screen.InputScreen.route) {
+            InputScreen(navController = navController)
+        }
     }
 }
 

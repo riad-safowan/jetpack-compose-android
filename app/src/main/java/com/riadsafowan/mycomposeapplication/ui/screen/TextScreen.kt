@@ -33,8 +33,7 @@ fun TextScreen(navController: NavController) {
         Column() {
             NavBar(
                 navController = navController,
-                previous = Screen.MainScreen.route,
-                next = Screen.StateScreen.route
+                destination = Screen.StateScreen.route
             )
             Row {
                 Box(

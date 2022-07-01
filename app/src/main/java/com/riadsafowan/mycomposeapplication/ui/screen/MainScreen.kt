@@ -1,9 +1,9 @@
 package com.riadsafowan.mycomposeapplication.ui.screen
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Card
@@ -31,29 +31,46 @@ import com.riadsafowan.mycomposeapplication.ui.components.NavBar
 @Composable
 fun MainScreen(navController: NavController) {
     val painter = painterResource(id = R.drawable.ic_launcher_background)
+    val scrollState = rememberScrollState()
     Column() {
         NavBar(
             navController = navController,
-            next = Screen.TextScreen.route,
+            destination = Screen.TextScreen.route,
         )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 10.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            ImageCard(painter, "adf", "Hello from Android")
-            ImageCard(painter, "adf", "another from Android")
+//        Column(modifier = Modifier.verticalScroll(scrollState)) {
+//            for (i in 1..5)
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(0.dp, 10.dp),
+//                    horizontalArrangement = Arrangement.SpaceEvenly,
+//                    verticalAlignment = Alignment.CenterVertically
+//                ) {
+//                    ImageCard(painter, "adf", "Hello from Android:")
+//                    ImageCard(painter, "adf", "another from Android")
+//                }
+//            Spacer(
+//                modifier = Modifier
+//                    .border(width = 2.5.dp, color = Color.Black)
+//                    .fillMaxWidth()
+//                    .height(10.dp)
+//                    .background(Color.Red)
+//            )
+//        }
+        LazyColumn {
+            items(5000) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(0.dp, 10.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ImageCard(painter, "adf", "Hello from Android: ${it}")
+                    ImageCard(painter, "adf", "another from Android")
+                }
+            }
         }
-        Spacer(
-            modifier = Modifier
-                .border(width = 2.5.dp, color = Color.Black)
-                .fillMaxWidth()
-                .height(10.dp)
-                .background(Color.Red)
-        )
-
     }
 }
 

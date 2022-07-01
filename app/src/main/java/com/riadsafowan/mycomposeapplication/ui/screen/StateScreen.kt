@@ -32,7 +32,7 @@ fun StateScreen(navController: NavController) {
     ) {
         NavBar(
             navController = navController,
-            previous = Screen.TextScreen.route
+            destination = Screen.InputScreen.route
         )
         ColorChangingBox()
 

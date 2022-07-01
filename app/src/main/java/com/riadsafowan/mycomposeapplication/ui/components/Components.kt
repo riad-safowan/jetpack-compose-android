@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun NavBar(navController: NavController, previous: String? = null, next: String? = null){
+fun NavBar(navController: NavController, destination: String? = null){
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
@@ -29,17 +29,15 @@ fun NavBar(navController: NavController, previous: String? = null, next: String?
             modifier = textModifier,
             style = textStyle
         ) {
-            if (previous != null) {
-                navController.navigate(previous)
-            }
+            navController.popBackStack()
         }
 
         ClickableText(text = buildAnnotatedString { append("Next Screen") },
             modifier = textModifier,
             style = textStyle,
             onClick = {
-                if (next != null) {
-                    navController.navigate(next)
+                if (destination != null) {
+                    navController.navigate(destination)
                 }
             })
     }
